@@ -9,7 +9,7 @@ return(
         if(token){
             return <Component {...props} />
         } else {
-            return <Redirect to="/Login" />
+            return <Redirect to="/" />
         }
     }
  } />

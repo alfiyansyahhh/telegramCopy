@@ -1,5 +1,5 @@
 import {Switch, Route} from 'react-router-dom'
-import Home from '../pages/Home'
+import Chat from '../pages/Chat'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Profile from '../pages/Profile'
@@ -15,7 +15,7 @@ const Router = () => {
                 <Register />
             </Route>
             <Guard path="/Profile" component={Profile} />
-            <Guard path="/Home" component={Home} />
+            <Guard path="/chat" component={Chat} />
         </Switch>
         
     )

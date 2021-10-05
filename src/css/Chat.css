@@ -1,0 +1,417 @@
+.chatList{
+    border-right: 1px solid rgb(149, 149, 149);
+}
+
+/* mini */
+.chatListMini{
+    border-right: 1px solid rgb(149, 149, 149);
+}
+.chatListMini .title .tt{
+  display: none;
+}
+.chatListMini .title .tt2{
+  margin-left: 15px;
+}
+.chatListMini .nameContact{
+    display: none;
+}
+.chatListMini .cardContact{
+    margin-left: 10px;
+}
+.chatListMini .ppContact{
+    margin-left: 5px;
+    border-radius: 100%;
+
+}
+.chatListMini .cari{
+    display: none;
+}
+.chatListMini .profile .name{
+ display: none;
+}
+.chatListMini .profile .username{
+ /* display: none; */
+ padding-top: 10px;
+}
+.chatListMini .profile img{
+    width: 55px;
+    height: 55px;
+
+    border-radius: 40%;
+}
+.chatListMini .contactChat{
+    margin-top: 10px;
+    height: 475px;
+    padding-top: 355px;
+    padding-bottom: 10px;
+}
+/* -------  */
+
+.profile img{
+    width: 70px;
+    height: 70px;
+    border-radius: 40%;
+    cursor: pointer;
+}
+.name{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    /* identical to box height */
+    margin-top: 10px;
+    letter-spacing: -0.165px;
+    color: #232323;
+}
+.date{
+    padding-right: 10px;
+}
+.profile{
+    justify-content: center;
+    padding: 10px;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px !important;
+}
+.cari{
+    background-color: #FAFAFA;
+    padding: 10px;
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 20px;
+    border: 1px solid black;
+}
+.cari input{
+    border: none;
+    list-style: none;
+    outline: none;
+}
+.tt{
+    cursor: pointer;
+}
+.tt2{
+    cursor: pointer;
+}
+.roomChat{
+    width: 100%;
+    padding: none;
+}
+.tcari{
+ margin-right: 13px;
+ cursor: pointer;
+}
+.tambahCari{
+    width: 25px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.bungkusChats{
+    height: 79.5vh;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x:hidden;
+}
+.bungkusChats::-webkit-scrollbar {
+  width: 3px;
+}
+ 
+.bungkusChats::-webkit-scrollbar-track {
+  box-shadow: transparent
+}
+ 
+.bungkusChats::-webkit-scrollbar-thumb {
+  background-color: transparent
+}
+
+.chats{  
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.chatSender{
+    text-align: end;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.isiChatsSender{
+    border-start-end-radius: 10px !important;
+    border-start-start-radius: 10px !important;
+    border-end-start-radius: 10px !important;
+    margin-top: 1%;
+    width: auto;
+    max-width: 700px;
+    min-width: 50px;
+    height: auto;
+    min-height: 20px;
+    background-color: #d1d0d0;
+    padding-top: 10px;
+    display: flex;
+}
+.pesan{
+    margin: -10px;
+    padding-bottom: 11px;
+    margin-right: 12px;
+    margin-left: 12px;   
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 185.17%;
+    letter-spacing: -0.165px;
+    color: #232323;
+}
+.pesan2{
+    margin: -10px;
+    padding-bottom: 11px;
+    margin-right: 12px;
+    margin-left: 12px;   
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 185.17%;
+    letter-spacing: -0.165px;
+    color: white;
+    justify-content: center
+}
+.chatReceiver{
+    text-align: start;
+    display: flex;
+    justify-content: start;
+    margin-top: 20px;
+}
+.isiChatsReceiver{
+    border-start-end-radius: 10px !important;
+    border-end-end-radius: 10px !important;
+    border-end-start-radius: 10px !important;
+    margin-top: 1%;
+    width: auto;
+    max-width: 700px;
+    min-width: 50px;
+    height: auto;
+    min-height: 20px;
+    background-color: #2d3d68;
+    padding-top: 10px;
+    display: flex;
+}
+.date2{
+    color: white;
+    font-size: 15px;
+    padding-top: 15px;
+    padding-right: 10px;
+}
+
+.inputChats{
+    height: 73px;
+    width: 102.8%;
+    background-color: #3d414e;
+    margin-left: -10px;
+}
+.inputChats img{
+    margin-left: 2%;
+    cursor: pointer;
+}
+.profileChats{
+    height: 70px;
+    justify-content: space-between;
+    display: flex;
+    padding-left: 20px;
+    padding-top: 5px;
+}
+.formInput input{
+    width: 80%;
+    border-radius: 10px;
+   margin-top: 20px;
+    border: none;
+    list-style: none;
+    outline: none;
+    height: 40px;
+    padding-left: 30px;
+}
+.info{
+    margin-right: 30px;
+    margin-top: 20px;
+    cursor: pointer;
+    height: 20px !important;
+}
+.uss{
+    margin-left: 10px;
+    font-family: Rubik;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: -0.165px;
+}
+.tts{
+    display: flex;
+    align-items: center;
+}
+.contactChat{
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: auto;
+    height: 350px;
+    padding-top: 389.5px;
+    /* background-color: brown; */
+
+}
+.contactChat::-webkit-scrollbar {
+    width: 3px;
+}
+   
+.contactChat::-webkit-scrollbar-track {
+box-shadow: transparent
+}
+
+.contactChat::-webkit-scrollbar-thumb {
+background-color: transparent
+}
+.cardContact{
+    background-color: rgba(194, 192, 197, 0.383);
+    border-radius: 20px;
+    width: 90%;
+    cursor: pointer;
+    height: 70px!important;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: rgba(0, 0, 0, 0.63);
+}
+.ppContact{
+    width: 50px;
+    border-radius:100%;
+}
+.jam{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    letter-spacing: -0.165px;   
+    color: #848484;
+}
+.nameContact{
+    margin-left: 10px;
+    margin-top: -25px;
+    font-family: Rubik;
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: -0.165px;
+}
+.detailReceiver{
+    background-color: #3d414eda;
+    margin-right: -9px;
+}
+
+.detailReceiver2{
+    display: none;
+}
+.profilePage{
+    height: 100vh;
+}
+.profilePageHide{
+    display: none;
+}
+.profileSender{
+    display: flex;
+}
+.psp{
+    width: 97%;
+    justify-content: start;
+    align-items: start;
+}
+.usernameP{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 26px;
+    /* identical to box height */
+    margin-top: 20px;
+    letter-spacing: -0.165px;
+    color: #232323;
+}
+.emailP{ 
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    margin-top: 10px;
+    line-height: 19px;
+    /* identical to box height */
+    letter-spacing: -0.17px;
+    color: #848484;
+}
+
+.ps{
+    border-radius: 100%;
+    margin-top: 30px;
+}
+.pusatHide{
+    display: none;
+}
+.bio{
+    margin-top: 10px;
+    outline: none;
+    height: 200px;
+    width: 40% !important;
+    margin-left: 30%;
+}
+.logout{
+    background-color: red;
+    margin-top: 30px;
+    margin-left: 30%;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.ppR img{
+    margin-top: 20px;
+    border-radius: 100%;
+}
+.pp{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+.usR{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 26px;
+    /* identical to box height */
+    margin-top: 20px;
+    letter-spacing: -0.165px;
+    color: #232323;
+}
+.emR{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    margin-top: 10px;
+    line-height: 19px;
+    /* identical to box height */
+    letter-spacing: -0.17px;
+    color: white
+
+}
