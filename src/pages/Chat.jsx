@@ -1,35 +1,66 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable array-callback-return */
+/* eslint-disable jsx-a11y/alt-text */
 import '../css/Chat.css'
-import { Row, Col, Container } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import "animate.css"
 import {useState} from 'react'
 import socket from '../config/socket'
 import { useEffect } from 'react'
-import axios from 'axios';
 import plus from '../images/plus.svg'
 import foto from '../images/foto.svg'
 import stiker from '../images/stiker.svg'
-import pp from '../images/pp.png'
 import info from '../images/info.svg'
-import garis from '../images/garis.svg'
-import cari from '../images/cari.svg'
 import { Form, FormGroup, Input } from 'reactstrap';
 import moment from "moment";
 import {useHistory} from 'react-router-dom'
+import users from '../redux/actions/users'
+import { useSelector, useDispatch } from 'react-redux'
+import MenuComponen  from '../componen/menu.jsx'
+
 
 const Chat = () => {
     const username = localStorage.getItem('username')
-    const token = localStorage.getItem('token')
+    const id = localStorage.getItem('idUser')
+    const dispatch = useDispatch()
+    
     socket.emit('login', username);
 
-    const [users, setusers] = useState([])
     const [History, setHistory] = useState([])
     const [ListMsg, setListMsg] = useState([])
-    const [Hide, setHide] = useState(false)
+    const Datausers = useSelector((state) => state.users.Alluser)
+    const Datauser = useSelector((state) => state.users.user)
+       console.log(Datauser, "ini users")
+  
+    const [update, setUpdate] = useState({
+        image : "",
+        imagePriview: `${process.env.REACT_APP_API_URL}/${Datauser.picture}`,
+        username: Datauser.username,
+        email: Datauser.email,
+        phone_number: Datauser.phone_number,
+    })
+
+    console.log(update)
+    
+    const [DataChats, setDataChats] = useState({
+        sender: username,
+        receiver:'',
+        msg:''
+    })
+
+    const [search, setSearch] = useState("")
+
+
+    const [Menu, setMenu] = useState(false)
+    const [Setting, setSetting] = useState(false)
     const [HideInfo, setHideInfo] = useState(true)
     const [HideChat, setHideChat] = useState(true)
 
+    console.log(Setting)
+  
+
     const handleHide = () => {
-        setHide(!Hide)
+        setMenu(!Menu)
     }
     const handleHideInfo = () => {
         setHideInfo(!HideInfo)
@@ -37,30 +68,36 @@ const Chat = () => {
     const handleProfile = () => {
         setHideChat(true)
     }
-
-    const [DataChats, setDataChats] = useState({
-        sender: username,
-        receiver:'',
-        msg:''
-    })
+    const handleSetting = () => {
+        setSetting(true)
+        setMenu(!Menu)
+    }
+    const handleBack = () => {
+        setSetting(false)
+    }
 
     const history = useHistory()
+
     const logout = () => {
         localStorage.clear();
         history.push('/')
     }
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/users`, { headers: { token: token} })
-        .then((response) => {
-            setusers(
-                response.data.data.users   
-            )
-        }).catch((err) => {
-            console.log(err)
-        })
+        dispatch(users.ACTION_GET_ALL_USERS(search))
+        dispatch(users.ACTION_GET_USER_DETAIL(id))
         setHideChat(true)
     }, [])
+    
+    useEffect(() => {
+        setUpdate({
+            picture : "",
+            imagePriview: `${process.env.REACT_APP_API_URL}/${Datauser.picture}`,
+            username: Datauser.username,
+            email: Datauser.email,
+            phone_number: Datauser.phone_number,
+        })
+   }, [Datauser])
 
     
     const timeLocal = (time) => {
@@ -68,12 +105,12 @@ const Chat = () => {
         return local;
     };
 
+    var time = new Date();
 
     useEffect(() => {
         socket.on("get-message-private", (payload) => {
             setListMsg([...ListMsg, payload])       
         })  
-        // setListMsg([])
         socket.on("get-history-chat", (payload) => {
             setHistory(payload)       
         })                 
@@ -111,111 +148,95 @@ const Chat = () => {
             msg: ""
         })
     }
+
+    const insertUpdate = (e) => {
+        setUpdate({...update,
+            [e.target.name]:e.target.value
+        })
+    }
+    
+    const insertFile = (e) => {
+        setUpdate({
+            ...update,
+            picture: e.target.files[0],
+            imagePriview: URL.createObjectURL(e.target.files[0])
+        })
+    }
+
+    const changeSearch = (e) => {
+        setSearch(e.target.value)
+    }
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        dispatch(users.ACTION_GET_ALL_USERS(search))
+    }
+
+    const submitUpdate = (e) => {
+        e.preventDefault();
+        const formData = new FormData()
+        formData.append("image", update.image)
+        formData.append("username", update.username)
+        formData.append("email", update.email)
+        formData.append("phone_number", update.phone_number)
+        users.ACTION_UPDATE(formData,id).then((response) => {
+            console.log(response)
+            dispatch(users.ACTION_GET_ALL_USERS())
+            dispatch(users.ACTION_GET_USER_DETAIL(id))
+        }).catch((err) => {
+            console.log(err)
+            alert(err)
+        })
+    }
     
 
     return(
             <Row className="roomChat" >
-            <Col lg={Hide === false?(3):(1)} className={Hide === false? ("chatList"):("chatListMini")}>
-                <div className="title">
-                    <div className="tt">
-                        Telegram
-                    </div>
-                    <div><img className="tt2" src={garis} onClick={handleHide}/></div>                 
-                </div>
-                <div className="profile">
-                    {users.map((e) => {
-                        if(e.username === username){
-                            return(
-                                <div className="profile">
-                                    <img  src={`${process.env.REACT_APP_API_URL}/${e.picture}`} onClick={handleProfile}/>
-                                    <div className="name">{e.username}</div>
-                                    <div className="username">@{e.username}</div>
-                                </div>
-                            )
-                        }
-                    })}
-                </div>
-                <div className="cari">
-                    <img className="tcari" src={cari} />
-                    <input 
-                        placeholder="Type your message..."
-                    />
-                    <img className="tambahCari"src={plus} />
-                </div>
+            <Col lg="3" className="chatList">
+               <MenuComponen 
+               Datausers={Datausers}
+               Datauser={Datauser}
+               handleSearch={handleSearch}
+               search={search}
+               changeSearch={changeSearch}
+               plus={plus}
+               username={username}
+               chatting={chatting}
+               logout={logout}
+               handleProfile={handleProfile}
+               update={update}
+               insertFile={insertFile}
+               insertUpdate={insertUpdate}
+               submitUpdate={submitUpdate}
+               />
+            </Col>
 
-                <div className="contactChat">
-                {users.map((e) => {
-                    if(e.username !== username){
-                        return(
-                            <div className="cardContact" onClick={() => chatting(e.username)}>
-                                <div> <img src={`${process.env.REACT_APP_API_URL}/${e.picture}`} className="ppContact" /> </div>
-                                <div className="nameContact">
-                                    <div>{e.username}</div>
-                                    <div className="jam">7:30</div>
-                                </div>
-                                
-                            </div>
-                        )
-                    }                 
-                })}
+
+            <Col className={HideChat === true? ("profilePage"):("profilePageHide")}>
+                <div className="d-flex justify-content-center align-items-center h-100">
+                <p>Please select a chat to start messaging</p>
                 </div>
             </Col>
-            <Col className={HideChat === true? ("profilePage"):("profilePageHide")}>
-                <div className="profileSender">
-                    <div className="psp">
-                    {users.map((e) => {
-                        if(e.username === username) {
-                            return(
-                                <div>
-                                    <img className='ps' src={`${process.env.REACT_APP_API_URL}/${e.picture}`}/>
-                                    <div className="usernameP">{e.username}</div>
-                                    <div className="emailP">{e.email}</div>
-                                    <div className="phoneP">(+62) {e.phone_number}</div>
-                                </div>                    
-                            )
-                        }               
-                    })}
-                    <div >
-                        <Form >
-                             <FormGroup>
-                                <Input 
-                                className="bio"
-                                type="textarea" 
-                                name="text" 
-                                placeholder="bio"
-                                id="exampleText" />
-                            </FormGroup>
-                        </Form>
-                    </div>
-                    <div>
-                        <button onClick={logout} className="logout">Logout</button>
-                    </div>
-                    </div>
-                    <div className="menu1">
-                        <img onClick={handleHideInfo} className="info"src={info}/>
-                    </div>
-                </div> 
-            </Col>
-            <Col className={HideChat === true? ("pusatHide"):("pusat")}>
-                   
-                        {users.map((e) => {
-                            if (e.username === DataChats.receiver) {
+            <Col className={HideChat === true? ("pusatHide"):("pusat")}>                   
+                  
+                        {Datausers.map((e) => {
+                            if(e.username === DataChats.receiver){
                                 return(
                                     <div className="profileChats">
-                                        <div className="tts">
+                                    <div className="tts">
                                         <img onClick={handleHideInfo} className="pp" src={`${process.env.REACT_APP_API_URL}/${e.picture}`}/> 
                                         <div className="uss">{e.username}</div>
-                                        </div>
-                                        <div>
-                                            <img onClick={handleHideInfo} className="info"src={info}/>
-                                        </div> 
                                     </div>
-                                    
+
+                                    <div>
+                                    <img onClick={handleHideInfo} className="info"src={info}/>
+                                    </div>
+                                </div>
                                 )
-                            }                       
+                            }
                         })}
-                           
-                     
+                                        
+                                        
                     <div className="bungkusChats">
                         {History.map((e) => {
                             if (e.receiver === DataChats.receiver || e.sender === DataChats.receiver) {
@@ -249,13 +270,15 @@ const Chat = () => {
                                     <div className="chatSender">
                                         <div className="isiChatsSender">
                                             <div className="pesan">{e.msg}</div>
+                                            <div className="date">{time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</div>
                                         </div>
                                     </div>                                
                                 ):( 
                                     <div className="chatReceiver">
                                     <div className="isiChatsReceiver">
                                         <div className="pesan2">{e.msg}</div>
-                                    
+                                        <div className="date2">{time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</div>
+
                                     </div>
                                 </div>  
                                 )}
@@ -279,13 +302,14 @@ const Chat = () => {
                     </div>
             </Col>
             <Col lg="3" className={HideInfo === false ? ("detailReceiver"):("detailReceiver2")}>
-                    {users.map((e) => {
+                    {Datausers.map((e) => {
                         if (e.username === DataChats.receiver) {
                             return(
                                 <div>
                                     <div className="ppR"><img src={`${process.env.REACT_APP_API_URL}/${e.picture}`} /></div>
                                     <div className="usR">{e.username}</div>
                                     <div className="emR">{e.email}</div>
+                                    <div className="emR">(+ 62) {e.phone_number}</div>
                                 </div>
                             )
                         }

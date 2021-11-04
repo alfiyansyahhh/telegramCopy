@@ -1,18 +1,18 @@
 import '../css/Register.css'
-import { Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { Card, CardTitle, CardText, Row, Col } from 'reactstrap';
 import { useState} from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router'
 import eye from '../images/eye.png'
 import goggle from '../images/goggle.png'
 import back from '../images/back.svg'
-import axios from 'axios'
+import users from '../redux/actions/users'
 
 const Register = () => {
     const [eyes, seteyes] = useState(true)
     const handleEyes = () => {
         seteyes(!eyes)
-    }
+    } 
 
     const [Data, setData] = useState({
         username:"",
@@ -27,24 +27,24 @@ const Register = () => {
     }
 
     console.log(Data)
-    const inputData =(e)=> {
-        e.preventDefault();
-        axios.post(`${process.env.REACT_APP_API_URL}/register`, Data)
-        .then((response) =>{
-            console.log(response)
-            alert("succes")
-            History.push('/')
-        }).catch((err) => {
-            console.log(err)
-            alert("terjadi kesalahan")
-        })
-    }
-
     const insertData = (e) => {
         setData({ ...Data,
             [e.target.name]:e.target.value
         })
     }
+
+    console.log(Data)
+
+    const inputData =(e)=> {
+        e.preventDefault();
+        users.REGISTER(Data).then((response) => {
+            console.log(response)
+            History.push('/')
+        }).catch((err) => {
+            alert("terjadi kesalahan")
+        })
+    }
+   
 
     return(
         <Row className="register">

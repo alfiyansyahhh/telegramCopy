@@ -2,56 +2,12 @@
     border-right: 1px solid rgb(149, 149, 149);
 }
 
-/* mini */
-.chatListMini{
-    border-right: 1px solid rgb(149, 149, 149);
-}
-.chatListMini .title .tt{
-  display: none;
-}
-.chatListMini .title .tt2{
-  margin-left: 15px;
-}
-.chatListMini .nameContact{
-    display: none;
-}
-.chatListMini .cardContact{
-    margin-left: 10px;
-}
-.chatListMini .ppContact{
-    margin-left: 5px;
-    border-radius: 100%;
-
-}
-.chatListMini .cari{
-    display: none;
-}
-.chatListMini .profile .name{
- display: none;
-}
-.chatListMini .profile .username{
- /* display: none; */
- padding-top: 10px;
-}
-.chatListMini .profile img{
-    width: 55px;
-    height: 55px;
-
-    border-radius: 40%;
-}
-.chatListMini .contactChat{
-    margin-top: 10px;
-    height: 475px;
-    padding-top: 355px;
-    padding-bottom: 10px;
-}
-/* -------  */
-
 .profile img{
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
     border-radius: 40%;
     cursor: pointer;
+    margin-top: 10px;
 }
 .name{
     font-family: Rubik;
@@ -70,6 +26,106 @@
 .profile{
     justify-content: center;
     padding: 10px;
+    /* position: relative; */
+}
+.Menu2{
+    display: none;
+}
+.Menu{
+    position: absolute;
+    display: flex;
+    width: 22%;
+    justify-content: end;
+}
+.menuT{
+    text-align: start;
+    padding-left: 20px !important;
+    cursor: pointer;
+}
+.homeMenu{
+    display: block;
+}
+.homeMenuHide{
+    display: none;
+}
+.setting{
+    display: block;
+}
+.settingHide{
+    display: none;
+}
+.pointer{
+    cursor: pointer;
+}
+.setting{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+.mSetting{
+    display: flex;
+    width: 70%;
+    margin-top: 20px;
+}
+.nameSetting{   
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    width: 100%;
+    color: #7E98DF;
+}
+.edit{
+    text-align: end;
+    font-family: Rubik;
+    font-style: normal;
+    font-size: 17px;
+    color: #7E98DF;
+    cursor: pointer;
+}
+.settingH{
+    width: 80%;
+}
+.account{
+    text-align: start !important;
+    margin-top: 40px;
+    font-family: Rubik;
+    font-style: normal;
+    font-size: 19px;
+    line-height: 23px;
+    color: #232323;
+}
+.bio2{
+    text-align: start !important;
+    font-family: Rubik;
+    font-style: normal;
+    font-size: 19px;
+    line-height: 23px;
+    color: #232323;
+    margin-top: 30px;
+}
+.sbw{
+    margin-top: 80px; 
+    text-align: start;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 20px;
+}
+.cardMenu{
+    background-color: #7E98DF;
+    width: 250px;
+    height: 250px;
+    border-radius: 35px;
+    border-start-end-radius: 1px;
+    padding: 20px;
+    font-size: 16px;  
+    color: white;  
 }
 .title{
     display: flex;
@@ -96,7 +152,8 @@
     cursor: pointer;
 }
 .roomChat{
-    width: 100%;
+    width: 100.7%;
+    height: 100vh;
     padding: none;
 }
 .tcari{
@@ -110,7 +167,7 @@
 }
 
 .bungkusChats{
-    height: 79.5vh;
+    height: 83.7%;
     width: 100%;
     overflow-y: auto;
     overflow-x:hidden;
@@ -208,7 +265,7 @@
 
 .inputChats{
     height: 73px;
-    width: 102.8%;
+    width: 101.7%;
     background-color: #3d414e;
     margin-left: -10px;
 }
@@ -257,22 +314,24 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    overflow: auto;
-    height: 350px;
-    padding-top: 389.5px;
-    /* background-color: brown; */
-
+    height: 440px;
 }
-.contactChat::-webkit-scrollbar {
+.cardca{
+    margin-top: 5px;
+    overflow-y: scroll;
+    height: 100vh;
+    /* background-color: violet; */
+}
+.cardca::-webkit-scrollbar {
     width: 3px;
 }
    
-.contactChat::-webkit-scrollbar-track {
-box-shadow: transparent
+.cardca::-webkit-scrollbar-track {
+box-shadow: transparent;
 }
 
-.contactChat::-webkit-scrollbar-thumb {
-background-color: transparent
+.cardca::-webkit-scrollbar-thumb {
+background-color: transparent;
 }
 .cardContact{
     background-color: rgba(194, 192, 197, 0.383);
@@ -284,10 +343,12 @@ background-color: transparent
     display: flex;
     align-items: center;
     padding: 10px;
+    margin-left: 20px;
     color: rgba(0, 0, 0, 0.63);
 }
 .ppContact{
     width: 50px;
+    height: 50px;
     border-radius:100%;
 }
 .jam{
@@ -316,6 +377,7 @@ background-color: transparent
 .detailReceiver{
     background-color: #3d414eda;
     margin-right: -9px;
+    height: 100%;
 }
 
 .detailReceiver2{
@@ -361,6 +423,8 @@ background-color: transparent
 .ps{
     border-radius: 100%;
     margin-top: 30px;
+    width: 270px;
+    height: 270px;
 }
 .pusatHide{
     display: none;
@@ -384,6 +448,8 @@ background-color: transparent
 }
 .ppR img{
     margin-top: 20px;
+    height: 260px;
+    width: 260px;
     border-radius: 100%;
 }
 .pp{
@@ -414,4 +480,11 @@ background-color: transparent
     letter-spacing: -0.17px;
     color: white
 
+}
+.editHide{
+    display: none;
+}
+
+.edit{
+    display: block;
 }

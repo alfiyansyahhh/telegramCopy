@@ -1,11 +1,11 @@
 import '../css/Login.css'
-import { Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { Card, CardTitle, CardText, Row, Col } from 'reactstrap';
 import goggle from '../images/goggle.png'
 import eye from '../images/eye.png'
 import { Link } from 'react-router-dom'
 import {useState} from 'react'
-import { useHistory } from 'react-router-dom'
-import axios from 'axios'
+import { useHistory } from 'react-router'
+import users from '../redux/actions/users'
 
 const Login = () => {
     const [eyes, seteyes] = useState(true)
@@ -29,19 +29,22 @@ const Login = () => {
     const History = useHistory()
     const Login = (e) => {
         e.preventDefault();
-        axios.post(`${process.env.REACT_APP_API_URL}/login`, Data)
-        .then((response) => {
-            const token = response.data.data.token
-            const user = response.data.data.user
-            localStorage.setItem("token", token)
-            localStorage.setItem("idUser", user.id)
-            localStorage.setItem("username", user.username)
+        users.LOGIN(Data).then((response) => {
+            localStorage.setItem("token", response.data.token)
+            const users = response.data.user
+            const username = users.username
+            const id = users.id
+            localStorage.setItem("idUser", id)
+            console.log(response)
+            localStorage.setItem("username", username)
             History.push("/chat")
+            // alert("hai")
         }).catch((err) => {
-            console.log(err)
+            alert("username/password salah")
         })
-
     }
+
+
     return(
         <Row className="login">
         <Col lg="4" xs="11">
