@@ -4,13 +4,11 @@ screenshoot:
 
 [![Screenshot-47sdf8.png](https://i.postimg.cc/9XGyHwMq/Screenshot-478.png)](https://postimg.cc/MXpnyT1W)
 
-![Screenshot-47df8.png](https://postimg.cc/MXpnyT1W)
+[![Screenshot-47sdf8.png](https://i.postimg.cc/9XGyHwMq/Screenshot-478.png)](https://postimg.cc/4n2mwg1p)
+[![Screenshot-47sdf8.png](https://i.postimg.cc/9XGyHwMq/Screenshot-478.png)](https://postimg.cc/wRM3Hf9t)
+[![Screenshot-47sdf8.png](https://i.postimg.cc/9XGyHwMq/Screenshot-478.png)](https://postimg.cc/GHB955MV)
 
-[Screenshot-4278.png](https://postimg.cc/4n2mwg1p)
 
-[Screenshot-4273.png](https://postimg.cc/wRM3Hf9t)
-
-[Screenshot-278.png](https://postimg.cc/GHB955MV)
 
 
 
