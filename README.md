@@ -5,7 +5,6 @@ screenshoot:
 
 [![Screenshot-47sdf8.png](https://i.postimg.cc/9XGyHwMq/Screenshot-478.png)](https://postimg.cc/MXpnyT1W)
 [![Screenshot-47sdf8.png](https://i.postimg.cc/TYfgd2LN/Screenshot-479.png)](https://postimg.cc/4n2mwg1p)
-[![Screenshot-47sdf8.png](https://i.postimg.cc/J4xJGwjr/Screenshot-481.png)](https://postimg.cc/wRM3Hf9t)
 [![Screenshot-47sdf8.png](https://i.postimg.cc/MHbB7N4Y/Screenshot-480.png)](https://postimg.cc/GHB955MV)
 
 
