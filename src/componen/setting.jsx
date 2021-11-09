@@ -19,17 +19,17 @@ const SettingComponen = ({Datauser,handleBack,handleEdit,logout}) => {
         </div>
 
         <div className="settingH">
-            <div className="account">   
+            <div className="account mt-4">   
                 <b>Account</b>
                 <div className="mt-2">(+62) {Datauser.phone_number}</div>
                 <div className="mt-2">Tap to change phone number</div>                                
-                <div className="mt-5">
+                <div className="mt-4">
                     <b>@{Datauser.username}</b>
                     <div className="mt-2">username</div>
                 </div>
             </div>
 
-            <div className="bio2">
+            <div className="bio2 mt-4">
                 <b>
                     I’m Senior Frontend Developer from Microsoft
                 </b>
@@ -38,21 +38,18 @@ const SettingComponen = ({Datauser,handleBack,handleEdit,logout}) => {
                 </div>
             </div>
             
-            <div className="sbw">
+            <div className="sbw mt-4">
                 <b>Settings</b>
 
-                <Row className="w-100 mt-3">
-                    <Col lg="2">
-                        <img src={gembok} alt="" />
-                    </Col>
-                    <Col lg="10" className="pointer"> Change Password</Col>       
-                </Row>
-                <Row className="w-100 mt-3">
-                    <Col lg="2">
-                        <img src={pesan} alt="" />
-                    </Col>
-                    <Col lg="10" className="pointer" onClick={logout}>Logout</Col>       
-                </Row>
+                <div className="d-flex w-100 mt-3">
+                    <div className="pointer"><img src={gembok} alt="" /></div>
+                    <div className="pointer ms-3 ">Change Password</div>
+                </div>
+                <div className="d-flex w-100 mt-3">
+                    <div className="pointer"><img src={pesan} alt="" /></div>
+                    <div className="pointer ms-3" onClick={logout}>Logout</div>
+                </div>
+
             </div>
         </div>
     </div>

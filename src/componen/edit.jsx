@@ -1,7 +1,14 @@
 import back from '../images/back.svg'
 import '../css/Chat.css'
 
-const Edit = ({update, handleBack, handleEdit,insertFile,insertUpdate,submitUpdate}) => {
+const Edit = ({ 
+    handleBack,
+    handleEdit, 
+    update, 
+    submitUpdate, 
+    insertFile, 
+    insertUpdate }) => {  
+
     return(
         <div className="setting">
         <div className="mSetting" >
@@ -19,7 +26,7 @@ const Edit = ({update, handleBack, handleEdit,insertFile,insertUpdate,submitUpda
                     <label className="mt-2 w-100">picture :</label>
                     <input className="mt-2 w-100"
                      type="file"
-                     name="image"
+                     name="picture"
                      onChange={insertFile}
                      id="file"
                     />
@@ -29,6 +36,7 @@ const Edit = ({update, handleBack, handleEdit,insertFile,insertUpdate,submitUpda
                     onChange={insertUpdate}
                     name="phone_number"
                     type="number"
+                    
                     />
                     <label className="mt-2 w-100">username :</label>
                     <input className="mt-2 w-100"

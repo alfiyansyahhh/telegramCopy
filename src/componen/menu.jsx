@@ -12,15 +12,16 @@ const Menu = ({
     handleSearch,
     search,
     changeSearch,
+    handleChatlist,
     plus,
-    username,
+    id,
     chatting,
     logout,
     handleProfile,
     update,
     insertFile,
     insertUpdate,
-    submitUpdate
+    submitUpdate,
     }) => {
         const [Setting, setSetting] = useState(false)
         const [Menu, setMenu] = useState(false)
@@ -38,8 +39,12 @@ const Menu = ({
         const handleEdit = () => {
             setEdit(!Edit)
         }
+        const handleHideChat = (username) => {
+            handleChatlist()
+            chatting(username)
+        }
     return(
-        <div>
+        <div className="kiri">
              <div className={Setting === true?("homeMenuHide"):("homeMenu")}>
                 <div className="title">
                     <div className="tt">
@@ -47,30 +52,31 @@ const Menu = ({
                     </div>
                     <div>
                         <img className="tt2" src={garis} onClick={handleHide}/>
-                    </div>                 
+                    </div>    
+                    <div className={Menu === false?("Menu2"):("Menu")}>
+                    <Row className="cardMenu">
+                        {/* <Col lg="4">
+                            <img src={setting} alt=""/>
+                        </Col> */}
+                        <Col lg="12" className="menuT" onClick={handleSetting}>
+                            Settings
+                        </Col>
+                        {/* <Col lg="4">
+                            <img src={orang} alt=""/>
+                        </Col> */}
+                        <Col lg="12" className="menuT">Contacts</Col>
+                        {/* <Col lg="4">
+                            <img src={orangP} alt=""/>
+                        </Col> */}
+                        <Col lg="12" className="menuT">Invite Friends</Col>
+                        {/* <Col lg="4">
+                            <img src={infoM} alt=""/>
+                        </Col> */}
+                        <Col lg="12" className="menuT">Telegram FAQ</Col>
+                    </Row>
+                     </div>             
                 </div>
-                <div className={Menu === false?("Menu2"):("Menu")}>
-                 <Row className="cardMenu">
-                     <Col lg="4">
-                         {/* <img src={setting} alt=""/> */}
-                     </Col>
-                     <Col lg="8" className="menuT" onClick={handleSetting}>
-                         Settings
-                     </Col>
-                     <Col lg="4">
-                         {/* <img src={orang} alt=""/> */}
-                     </Col>
-                     <Col lg="8" className="menuT">Contacts</Col>
-                     <Col lg="4">
-                         {/* <img src={orangP} alt=""/> */}
-                     </Col>
-                     <Col lg="8" className="menuT">Invite Friends</Col>
-                     <Col lg="4">
-                         {/* <img src={infoM} alt=""/> */}
-                     </Col>
-                     <Col lg="8" className="menuT">Telegram FAQ</Col>
-                 </Row>
-                </div>
+                
 
                 <div className="profile">
                     <div className="profile">
@@ -93,28 +99,39 @@ const Menu = ({
 
                 <div className="contactChat">
                     <div className="cardca">
-                {Datausers.map((e) => {
-                    if(e.username !== username){
-                        return(
-                            <div className="cardContact" onClick={() => chatting(e.username)}>
-                                <div> <img src={`${process.env.REACT_APP_API_URL}/${e.picture}`} className="ppContact" /> </div>
-                                <div className="nameContact">
-                                    <div>{e.username}</div>
-                                    <div className="jam">7:30</div>
-                                </div>
-                                
-                            </div>
-                        )
-                    }                 
-                })}
+                        {Datausers.map((e) => {
+                            if(e.id != id){
+                                return(
+                                    <>
+                                   
+                                        <div className="cardContact " onClick={() => chatting(e.username)}>
+                                            <div> <img src={`${process.env.REACT_APP_API_URL}/${e.picture}`} className="ppContact" /> </div>
+                                            <div className="nameContact">
+                                                <div>{e.username}</div>
+                                                <div className="jam">7:30</div>
+                                            </div>  
+                                        </div>
+                                    
+                                        <div className="cardContact2" onClick={() => handleHideChat(e.username)}>
+                                            <div> <img src={`${process.env.REACT_APP_API_URL}/${e.picture}`} className="ppContact" /> </div>
+                                            <div className="nameContact">
+                                                <div>{e.username}</div>
+                                                <div className="jam">7:30</div>
+                                            </div>  
+                                        </div>
+                                   
+                                    </> 
+                                )
+                            }                 
+                        })}
                 </div>
                 </div>
                 
             </div>
 
  
-            <div className={Setting === false?("settingHide"):("setting")}>
-                <div className={Edit === true?("settingHide"):("setting")}>
+            <div className={Setting === false?("d-none"):("d-flex")}>
+                <div className={Edit === true?("d-none"):("setting")}>
                     <SettingComponen 
                     Datauser={Datauser}
                     handleEdit={handleEdit}
@@ -122,9 +139,8 @@ const Menu = ({
                     logout={logout}
                     />
                 </div>
-                <div className={Edit === false?("editHide"):("edit")}>
+                <div className={Edit === false?("d-none"):("edit")}>
                     <EditComponen 
-                       Datauser={Datauser}
                        handleEdit={handleEdit}
                        handleBack={handleBack}
                        logout={logout}
