@@ -2,7 +2,9 @@ screenshoot:
 
 ![Screenshot-178.png](https://postimg.cc/MXpnyT1W)
 
-[Screenshot-478.png](https://postimg.cc/MXpnyT1W)
+[![Screenshot-47sdf8.png](https://i.postimg.cc/9XGyHwMq/Screenshot-478.png)](https://postimg.cc/MXpnyT1W)
+
+![Screenshot-47df8.png](https://postimg.cc/MXpnyT1W)
 
 [Screenshot-4278.png](https://postimg.cc/4n2mwg1p)
 
