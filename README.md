@@ -1,6 +1,6 @@
 screenshoot:
 
-[Screenshot-178.png](https://postimg.cc/MXpnyT1W)
+![Screenshot-178.png](https://postimg.cc/MXpnyT1W)
 
 [Screenshot-478.png](https://postimg.cc/MXpnyT1W)
 
