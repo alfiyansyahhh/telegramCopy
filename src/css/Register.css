@@ -2,6 +2,7 @@
     justify-content: center;
     align-items: center;
     height: 97.5vh;
+     width: 100%;
 }
 .cardRegister{
     border-radius: 20px !important;

@@ -41,7 +41,7 @@ const Chat = () => {
         msg:''
     })
 
-    const [search, setSearch] = useState("")
+    const [search, setSearch] = useState(" ")
     const [HideInfo, setHideInfo] = useState(true)
     const [HideChat, setHideChat] = useState(true)
     const [Checked, setChecked] = useState(false)
@@ -143,8 +143,7 @@ const Chat = () => {
         e.preventDefault();
         socket.emit('send-message-private', DataChats)
         if (DataChats) {
-            chatting(DataChats.receiver)
-            setListMsg([])
+            setListMsg([...ListMsg, DataChats])
             setDataChats({
                 ...DataChats,
                 msg: ""
