@@ -29,6 +29,7 @@ const Edit = ({
                      name="picture"
                      onChange={insertFile}
                      id="file"
+                     accept=".jpg, .jpeg, .png"
                     />
                     <label className="mt-2 w-100">phone_number :</label>
                     <input className="mt-2 w-100"
@@ -52,7 +53,7 @@ const Edit = ({
                     type="email"
                     name="email"
                     />
-                    <button className="mt-5" type="submit">save</button>
+                    <button className="mt-5 submitupdate" type="submit">save</button>
                 </form>
             </div>
         </div>

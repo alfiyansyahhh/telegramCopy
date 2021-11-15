@@ -14,6 +14,8 @@ const Register = () => {
         seteyes(!eyes)
     } 
 
+    const [info, setInfo] = useState()
+
     const [Data, setData] = useState({
         username:"",
         email:"",
@@ -21,28 +23,40 @@ const Register = () => {
         phone_number:""
     })
 
+    const [validasi, setValidasi] = useState(false)
+
     const History = useHistory()
     const backG = () => {
         History.push('/')
     }
 
-    console.log(Data)
+
     const insertData = (e) => {
         setData({ ...Data,
             [e.target.name]:e.target.value
         })
     }
 
-    console.log(Data)
 
     const inputData =(e)=> {
         e.preventDefault();
-        users.REGISTER(Data).then((response) => {
-            console.log(response)
-            History.push('/')
-        }).catch((err) => {
-            alert("terjadi kesalahan")
-        })
+        setValidasi(true)
+        setInfo("") 
+        if (Data.username && Data.email && Data.password && Data.phone_number) {
+            users.REGISTER(Data).then((response) => {
+                console.log(response)
+                History.push('/')
+            }).catch((err) => {
+                setInfo("terjadi kesalahan") 
+            })
+        } else {
+            if(!Data.username && !Data.email && !Data.password && !Data.phone_number){
+                setInfo("pliese insert data") 
+            } else{
+                setInfo("pliese complite your data")  
+            }        
+        }
+      
     }
    
 
@@ -54,15 +68,15 @@ const Register = () => {
             <form className="formRegister" onSubmit={inputData}>
                 <CardText>Let’s create your account!</CardText>
                 <CardText className="inputRegister">
-                    <p>Name :</p>
-                    <input
+                    <p className={ validasi === true && Data.username ===''?('danger'):('')} >Name :</p>
+                    <input 
                     type="text"
                     name="username"
                     onChange={insertData}
                     />
                 </CardText>
                 <CardText className="inputRegister">
-                    <p>Email :</p>
+                    <p  className={ validasi === true && Data.email ===''?('danger'):('')}>Email :</p>
                     <input
                     type="email"
                     name="email"
@@ -70,15 +84,16 @@ const Register = () => {
                     />
                 </CardText>
                 <CardText className="inputRegister">
-                    <p>Phone Number :</p>
-                    <input
+                    <p className={ validasi === true && Data.phone_number ===''?('danger'):('')}>Phone Number :</p>
+                    <input 
                     type="number"
                     name="phone_number"
                     onChange={insertData}
+                    value={Data.phone_number}
                     />
                 </CardText>
                 <CardText className="inputRegister">
-                    <p>Password :</p>
+                    <p className={ validasi === true && Data.password ===''?('danger'):('')}>Password :</p>
                     <input 
                     name="password"
                     type={eyes === true ? "password" : "text"}
@@ -86,7 +101,10 @@ const Register = () => {
                     />
                     <img onClick={handleEyes} className="eye" src={eye} alt="" />
                 </CardText>
-                <CardText className="forget"><Link className="fg" to='/register'>Forgot password?</Link></CardText>
+                <CardText className="forget">
+                    <div className="infostatus">{info}</div>
+                    <Link className="fg" to='/register'>Forgot password?</Link>
+                </CardText>
                 <button type="submit" className="tb">Register</button>
                 <CardText className="with">Register With</CardText>
                 <button className="tb2"> <img className="gg" src={goggle} alt="" />Google</button>

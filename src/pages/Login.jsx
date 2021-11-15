@@ -14,6 +14,9 @@ const Login = () => {
         password:''
     })
 
+    const [info, setInfo] = useState()
+    const [validasi, setValidasi] = useState(false)
+
     const handleEyes = () => {
         seteyes(!eyes)
     }
@@ -29,7 +32,10 @@ const Login = () => {
     const History = useHistory()
     const Login = (e) => {
         e.preventDefault();
-        users.LOGIN(Data).then((response) => {
+        setValidasi(true)
+        if (Data.password && Data.username) {
+            setInfo("")
+          users.LOGIN(Data).then((response) => {
             localStorage.setItem("token", response.data.token)
             const users = response.data.user
             const username = users.username
@@ -40,8 +46,19 @@ const Login = () => {
             History.push("/chat")
             // alert("hai")
         }).catch((err) => {
-            alert("username/password salah")
+            setInfo("wrong password/username !!")
+            console.log(err)
         })
+        } else {
+            if (!Data.password && Data.username) {
+                setInfo("pliese insert password !!")
+            } else if (Data.password && !Data.username) {
+                setInfo("pliese insert username !!")
+            } else{
+                setInfo("pliese insert data !!")
+            }
+        }
+       
     }
 
 
@@ -55,7 +72,7 @@ const Login = () => {
                     Hi, Welcome back!
                 </CardText>
                 <CardText className="emailLogin">
-                    <p>Email :</p>
+                    <p className={validasi === true && Data.username === ''?('danger'):('')}>Email :</p>
                     <input
                     onChange={handleLogin}
                     type="email"
@@ -63,7 +80,7 @@ const Login = () => {
                     />
                 </CardText>
                 <CardText className="passLogin">
-                    <p>Password :</p>
+                    <p className={validasi === true && Data.username === ''?('danger'):('')}>Password :</p>
                     <input 
                     type={eyes === true ? "password" : "text"}
                     onChange={handleLogin}
@@ -71,7 +88,10 @@ const Login = () => {
                     />
                     <img onClick={handleEyes} className="eye" src={eye} alt="" />
                 </CardText>
-                <CardText className="forget"><Link className="fg" to='/register'>Forgot password?</Link></CardText>
+                <CardText className="forget">
+                    <div className="infostatus">{info}</div>
+                    <Link className="fg" to='/register'>Forgot password?</Link>
+                </CardText>
             <button type="submit" className="tb">Login</button>
             <CardText className="with">Login With</CardText>
             <button className="tb2"> <img className="gg" src={goggle} alt="" />Google</button>

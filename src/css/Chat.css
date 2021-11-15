@@ -551,7 +551,31 @@ background-color: transparent;
     display: none;
 }
 
+.inputCari{
+    background-color: transparent;
+}
+
+.RoomChatMobile{
+    display: none;
+}
+.submitupdate{
+    background-color: royalblue;
+    color: white;
+    border: none;
+    width: 100%;
+    border-radius: 10px;
+    padding: 5px;
+
+}
+
 @media only screen and (max-width: 926px) {
+    .RoomChatMobile{
+        display: block;
+    }
+
+    .web{
+        display: none;
+    }
 
     .formInput input{
         width: 70% !important;

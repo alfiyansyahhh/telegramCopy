@@ -55,23 +55,15 @@ const Menu = ({
                     </div>    
                     <div className={Menu === false?("Menu2"):("Menu")}>
                     <Row className="cardMenu">
-                        {/* <Col lg="4">
-                            <img src={setting} alt=""/>
-                        </Col> */}
+                      
                         <Col lg="12" className="menuT" onClick={handleSetting}>
                             Settings
                         </Col>
-                        {/* <Col lg="4">
-                            <img src={orang} alt=""/>
-                        </Col> */}
+                     
                         <Col lg="12" className="menuT">Contacts</Col>
-                        {/* <Col lg="4">
-                            <img src={orangP} alt=""/>
-                        </Col> */}
+                        
                         <Col lg="12" className="menuT">Invite Friends</Col>
-                        {/* <Col lg="4">
-                            <img src={infoM} alt=""/>
-                        </Col> */}
+                      
                         <Col lg="12" className="menuT">Telegram FAQ</Col>
                     </Row>
                      </div>             
@@ -92,6 +84,7 @@ const Menu = ({
                         placeholder="Type your message..."
                         value={search}
                         onChange={changeSearch}
+                        className="inputCari"
                     />
                     <img className="tambahCari"src={plus} />
                     </form>
@@ -102,8 +95,7 @@ const Menu = ({
                         {Datausers.map((e) => {
                             if(e.id != id){
                                 return(
-                                    <>
-                                   
+                                    <> 
                                         <div className="cardContact " onClick={() => chatting(e.username)}>
                                             <div> <img src={`${process.env.REACT_APP_API_URL}/${e.picture}`} className="ppContact" /> </div>
                                             <div className="nameContact">
@@ -118,8 +110,7 @@ const Menu = ({
                                                 <div>{e.username}</div>
                                                 <div className="jam">7:30</div>
                                             </div>  
-                                        </div>
-                                   
+                                        </div>           
                                     </> 
                                 )
                             }                 
