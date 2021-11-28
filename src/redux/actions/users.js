@@ -1,6 +1,6 @@
 import axios from 'axios'
 import Get from '../helpers/env'
-import { token } from '../helpers/token'
+const token = localStorage.getItem('token')
 
 const user = {
     
